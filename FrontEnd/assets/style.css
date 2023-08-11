@@ -52,6 +52,7 @@ body {
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
+	background-color: #FFFEF8;
 }
 header {
 	display: flex;
@@ -60,6 +61,10 @@ header {
 }
 section {
 	margin: 50px 0
+}
+form p{
+	text-align: center;
+	text-decoration: underline;
 }
 
 h1{
@@ -163,31 +168,31 @@ li:hover {
 
 }
 
-#contact {
+#contact, #form_container {
 	width: 50%;
 margin: auto;
 }
-#contact > * {
+#contact, #form_container > * {
 	text-align: center;
 
 }
 #contact h2{
 	margin-bottom: 20px;
 }
-#contact form {
+#contact form, #form_container form {
 	text-align: left;
 	margin-top:30px;
 	display: flex;
 	flex-direction: column;
 }
 
-#contact input {
+#contact input, #form_container input {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-#contact label {
+#contact label, #form_container label {
 	margin: 2em 0 1em 0;
 }
 #contact textarea {
@@ -212,3 +217,15 @@ footer nav ul {
 	margin: 2em
 }
 
+/* --------------- Log in page -----------------  */
+.body_login {
+	height: 1024px;
+}
+
+.footer_login {
+	height: 60px;
+	position: fixed;
+	bottom: 0; 
+	left: 0;
+	width: 100%;
+}
