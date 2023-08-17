@@ -1,3 +1,7 @@
+let log = document.querySelector(".log");
+let admin = document.querySelector(".admin");
+let editProjets = document.querySelector(".editProjets");
+let editImgSoB = document.querySelector(".editImgSoB");
 const myGallery = document.querySelector(".gallery");
 let filters = document.querySelector(".filters");
 let buttons = [];
@@ -96,3 +100,11 @@ const displayWorksWithButtons = async () => {
 displayWorksWithButtons();
 
 // ---------- Deselection des filtres -----------------
+
+if (localStorage.getItem("token")) {
+  log.textContent = "Logout";
+  filters.style.display = "none";
+  admin.style.display = "block";
+  editImgSoB.style.display = "block";
+  editProjets.style.display = "block";
+}

@@ -7,18 +7,31 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 	
 </head>
 <body>
+	<div class="admin">
+	<div class="adminBlock">
+		<div class="infoEtBtn">
+			<div class="infoMode">
+				<i class="fa-regular fa-pen-to-square"></i><p>Mode édition</p>
+			</div>
+			<button type="submit" class="btnPublish">publier les changements</button>
+		</div>
+	</div>
+</div>
+	<div class="main-container">
 <header>
+	
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
-			<li>projets</li>
-			<li>contact</li>
-			<li><a href="login.html">login</a></li>
+			<li><a href="#portfolio">projets</a></li>
+			<li><a href="#contact">contact</a></li>
+			<li class="log"><a href="login.html">login</a></li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -27,7 +40,9 @@
 	<section id="introduction">
 		<figure>
 			<img src="./assets/images/sophie-bluel.png" alt="">
+			<div class="editImgSoB"><i class="fa-regular fa-pen-to-square pen"></i>modifier</div>
 		</figure>
+		
 		<article>
 			<h2>Designer d'espace</h2>
 			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
@@ -36,7 +51,10 @@
 		</article>
 	</section>
 	<section id="portfolio">
+		<div class="projetsEtEditProjets">
 		<h2>Mes Projets</h2>
+		<div class="editProjets"><i class="fa-regular fa-pen-to-square pen"></i>modifier</div>
+	</div>
 		<div class="filters">
 			
 			
@@ -68,5 +86,6 @@
 	</nav>
 </footer>
 <script src="./scripts/script.js"></script>
+</div>
 </body>
 </html>

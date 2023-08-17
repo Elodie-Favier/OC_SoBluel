@@ -17,7 +17,7 @@
             <ul>
                 <li>projets</li>
                 <li>contact</li>
-                <li><a href="login.html">login</a></li>
+                <li class="log"><a href="login.html">login</a></li>
                 <li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
             </ul>
         </nav>
@@ -28,9 +28,10 @@
         <form id="login" action="#" method="post">
 			
 			<label for="email">Email</label>
-			<input type="email" name="email" id="email">
+			<input type="text" name="email" id="email">
 			<label for="password">Mot de passe</label>
 			<input type="password"  name="password" id="password">
+            <span class="error">Erreur dans l’identifiant ou le mot de passe</span>
 			<input type="submit" value="Se connecter">
             <p>Mot de passe oublié ?</p>
 		</form>
@@ -43,5 +44,6 @@
             </ul>
         </nav>
     </footer>
+    <script src="./scripts/login.js"></script>
 </body>
 </html>
