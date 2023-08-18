@@ -311,7 +311,106 @@ footer nav ul {
 .editProjets{
 	padding-left: 20px;
 	padding-top: 10px;
+	display: none;
 }
 .editImgSoB{
 	padding-left: 55px;
+	display: none;
+}
+/* -------------------- Modal ------------------  */
+.modal {
+	position: absolute;
+	width: 1440px;
+	height: 3326px;
+	top: 59px;
+	border-radius: 10px;
+	background: rgba(0,0,0,0.3);
+	display: none;
+}
+
+
+.modal-wrapper{
+	position: absolute;
+    width: 629px;
+    height: 731px;
+    top: 660px;
+    left: 405px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 1);
+}
+.modal-wrapper h1 {
+	font-family: Work Sans;
+	font-size: 26px;
+	font-weight: 400;
+	line-height: 30px;
+	letter-spacing: 0em;
+	text-align: center;
+	margin-top: 30px;
+	color:black;
+}
+.fa-xmark {
+ margin-left: 580px;
+ margin-top: 40px;
+}
+.btn-closeModal{
+	border: none;
+	background: none;
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+}
+.close-modal-text{
+	display: none;
+}
+.greyLine {
+	background: rgba(179, 179, 179, 1);
+	border: 1px solid rgba(179, 179, 179, 1);
+	width: 420px;
+	margin: auto;
+}
+#addPhoto{
+	font-family: 'Syne';
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 17px;
+	letter-spacing: 0em;
+	text-align: center;
+	width: 237px;
+	height: 36px;
+	top: 1267px;
+	left: 600px;
+	border-radius: 60px;
+	color: white;
+	background: rgba(29, 97, 84, 1);
+	border: 1px solid #1D6154;
+	cursor: pointer;
+}
+.deleteGallery{
+	font-family: 'Syne';
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 17px;
+	letter-spacing: 0em;
+	text-align: center;
+	color: rgba(214, 83, 83, 1);
+}
+
+.gallerymodal{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 10px;
+	margin: 40px 90px;
+	/* max 5 cards par ligne */
+}
+.gallerymodal-card{
+	/* div */
+	width:76.86px;
+	height: 116px
+}
+.gallerymodal-card-img {
+	width: 100%;
+	height: 102.56px;
+background-color: #1D6154;
 }

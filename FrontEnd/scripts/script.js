@@ -99,7 +99,7 @@ const displayWorksWithButtons = async () => {
 };
 displayWorksWithButtons();
 
-// ---------- Deselection des filtres -----------------
+// if token in localStorage
 
 if (localStorage.getItem("token")) {
   log.textContent = "Logout";

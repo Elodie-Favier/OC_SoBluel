@@ -53,7 +53,33 @@
 	<section id="portfolio">
 		<div class="projetsEtEditProjets">
 		<h2>Mes Projets</h2>
-		<div class="editProjets"><i class="fa-regular fa-pen-to-square pen"></i>modifier</div>
+		<div class="editProjets"><i class="fa-regular fa-pen-to-square pen"></i><a href="#modal1" class="js-modal">modifier</a></div>
+
+		<aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="titleModal">
+			<div class="modal-wrapper js-modal-stop">
+				<button class="js-modal-close btn-closeModal"><i class="fa-solid fa-xmark fa-lg close-modal"></i><span class="close-modal-text">Fermer la boîte</span></button>
+<h1 id="titleModal">Galerie photo</h1>
+<div class="gallerymodal">
+<div class="gallerymodal-card"><div class="gallerymodal-card-img"></div><p>éditer</p></div>
+<div class="gallerymodal-card"><div class="gallerymodal-card-img"></div><p>éditer</p></div>
+<div class="gallerymodal-card"><div class="gallerymodal-card-img"></div><p>éditer</p></div>
+<div class="gallerymodal-card"><div class="gallerymodal-card-img"></div><p>éditer</p></div>
+<div class="gallerymodal-card"><div class="gallerymodal-card-img"></div><p>éditer</p></div>
+<div class="gallerymodal-card"><div class="gallerymodal-card-img"></div><p>éditer</p></div>
+<div class="gallerymodal-card"><div class="gallerymodal-card-img"></div><p>éditer</p></div>
+<div class="gallerymodal-card"><div class="gallerymodal-card-img"></div><p>éditer</p></div>
+<div class="gallerymodal-card"><div class="gallerymodal-card-img"></div><p>éditer</p></div>
+<div class="gallerymodal-card"><div class="gallerymodal-card-img"></div><p>éditer</p></div>
+<div class="gallerymodal-card"><div class="gallerymodal-card-img"></div><p>éditer</p></div>
+
+
+</div>
+
+<div class="greyLine"></div>
+<button type="button" id="addPhoto">Ajouter une photo</button>
+<p class="deleteGallery">Supprimer la galerie</p>
+			</div>
+		</aside>
 	</div>
 		<div class="filters">
 			
@@ -85,7 +111,9 @@
 		</ul>
 	</nav>
 </footer>
+<script src="./scripts/modal.js"></script>
 <script src="./scripts/script.js"></script>
+
 </div>
 </body>
 </html>
