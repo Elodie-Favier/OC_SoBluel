@@ -1,5 +1,7 @@
 let modal = null;
 let gallerymodal = document.querySelector(".gallerymodal");
+console.log(gallerymodal);
+let imgData = [];
 
 const openModal = function (e) {
   e.preventDefault();
@@ -45,6 +47,25 @@ window.addEventListener("keydown", function (e) {
   }
 });
 
-const displayGalleryModal = async () => {
-  // forEach(work) creer une card avec l'image affichée dedans et la fonction "editer" en dessous et ajouter les icones trash en blanc sur fonds noir
+const getImgGalleryModal = async () => {
+  const res = await fetch("http://localhost:5678/api/works");
+  imgData = await res.json();
+  console.log(imgData);
 };
+getImgGalleryModal();
+
+const displayImgGalleryModal = async () => {
+  await getImgGalleryModal();
+
+  gallerymodal.innerHTML = imgData
+    .map(
+      (img) =>
+        `<div class="gallerymodal-card">
+          <img class="gallerymodal-card-img" src=${img.imageUrl}>
+          <div class="icon-trash"><i class="fa-solid fa-trash-can fa-xs"></i></div>
+          <button class="gallerymodal-card-btn">éditer</button>
+          </div>`
+    )
+    .join("");
+};
+displayImgGalleryModal();
