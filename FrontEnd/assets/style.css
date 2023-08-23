@@ -443,5 +443,6 @@ footer nav ul {
     align-items: center;
     border-radius: 2px;
     margin-top: 5px;
+	cursor: pointer;
     margin-left: 55px;
 }

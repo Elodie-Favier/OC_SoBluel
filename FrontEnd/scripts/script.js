@@ -44,6 +44,7 @@ const displayAllWorks = async () => {
     .join("");
 };
 displayAllWorks();
+
 function unselectedButton() {
   buttons.forEach((button) => {
     button.classList.remove("filterSelected");

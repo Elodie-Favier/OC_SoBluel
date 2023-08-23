@@ -1,7 +1,11 @@
 let modal = null;
 let gallerymodal = document.querySelector(".gallerymodal");
-console.log(gallerymodal);
+// console.log(gallerymodal);
+
 let imgData = [];
+let imgId;
+
+// fonctionnement basique de la modal
 
 const openModal = function (e) {
   e.preventDefault();
@@ -47,10 +51,12 @@ window.addEventListener("keydown", function (e) {
   }
 });
 
+// affichage des images et des icones trash
+
 const getImgGalleryModal = async () => {
   const res = await fetch("http://localhost:5678/api/works");
   imgData = await res.json();
-  console.log(imgData);
+  // console.log(imgData);
 };
 getImgGalleryModal();
 
@@ -60,12 +66,32 @@ const displayImgGalleryModal = async () => {
   gallerymodal.innerHTML = imgData
     .map(
       (img) =>
-        `<div class="gallerymodal-card">
+        `<div class="gallerymodal-card" dataset="${img.id}">
           <img class="gallerymodal-card-img" src=${img.imageUrl}>
-          <div class="icon-trash"><i class="fa-solid fa-trash-can fa-xs"></i></div>
+          <div class="icon-trash"><i id="${img.id}" class="fa-solid fa-trash-can"></i></div>
           <button class="gallerymodal-card-btn">éditer</button>
-          </div>`
+        </div>`
     )
     .join("");
 };
 displayImgGalleryModal();
+
+const selectGarbageOnClick = async () => {
+  await displayImgGalleryModal();
+
+  let galleryCards = document.querySelectorAll(".gallerymodal-card");
+  galleryCards.forEach((card) => {
+    let garbage = document.querySelector(".icon-trash i");
+    console.log(garbage);
+    card.addEventListener("click", (event) => {
+      console.log(event.target.id);
+      let garbageId = event.target.id;
+      console.log(garbageId);
+    });
+  });
+};
+selectGarbageOnClick();
+
+const deleteImg = () => {
+  // fetch DELETE
+};
