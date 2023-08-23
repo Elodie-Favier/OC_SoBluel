@@ -66,7 +66,7 @@ const displayImgGalleryModal = async () => {
   gallerymodal.innerHTML = imgData
     .map(
       (img) =>
-        `<div class="gallerymodal-card" dataset="${img.id}">
+        `<div class="gallerymodal-card" id="${img.id}">
           <img class="gallerymodal-card-img" src=${img.imageUrl}>
           <div class="icon-trash"><i id="${img.id}" class="fa-solid fa-trash-can"></i></div>
           <button class="gallerymodal-card-btn">éditer</button>
@@ -80,18 +80,37 @@ const selectGarbageOnClick = async () => {
   await displayImgGalleryModal();
 
   let galleryCards = document.querySelectorAll(".gallerymodal-card");
+
   galleryCards.forEach((card) => {
+    let cardId = card.id;
+    // console.log(cardId);
     let garbage = document.querySelector(".icon-trash i");
-    console.log(garbage);
+    // console.log(garbage);
     card.addEventListener("click", (event) => {
-      console.log(event.target.id);
+      // console.log(event.target.id);
       let garbageId = event.target.id;
-      console.log(garbageId);
+      // console.log(garbageId);
+
+      if (garbageId === cardId) {
+        // confirm() à la place ?
+        alert(
+          "Attention vous allez supprimer la photo numéro " + cardId + " ?"
+        );
+        deleteImg(cardId);
+      }
     });
   });
 };
 selectGarbageOnClick();
 
-const deleteImg = () => {
+const deleteImg = async () => {
   // fetch DELETE
+  if (localStorage.getItem("token")) {
+    const deleteRes = await fetch("http://localhost:5678/api/works/${cardId}", {
+      method: "DELETE",
+      headers: { Authorization: "Bearer ${token}" },
+    });
+    let deleteImg = await deleteRes.json();
+    console.log(deleteImg);
+  }
 };
