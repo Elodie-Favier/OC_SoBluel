@@ -66,15 +66,40 @@
 <button type="button" id="addPhoto">Ajouter une photo</button>
 <p class="deleteGallery">Supprimer la galerie</p>
 </div>
+
+			</div>
+			<div class="modal-wrapper js-modal-stop">
+				<button class="js-modal-close btn-closeModal"><i class="fa-solid fa-arrow-left"></i><span class="close-modal-text">Retour en arrière</span></button>
+
+				<button class="js-modal-close btn-closeModal"><i class="fa-solid fa-xmark fa-lg close-modal"></i><span class="close-modal-text">Fermer la boîte</span></button>
+<h1 id="titleModal">Ajout photo</h1>
+<div class="imgDownload">
+	<div class="icon-img"><i class="fa-regular fa-image"></i></div>
+	<button class="">+ ajouter photo</button>
+	<p class="formatPhoto">jpg, png : 4mo max</p>
+</div>
+<form action="#" method="post">
+			<label for="titre">Titre</label>
+			<input type="text" name="titre" id="titre">
+			<label for="categorie">Catégorie</label>
+			<select type="text" name="categorie" id="categorie">
+				<option value="objets">objets</option>
+				<option value="Appart et hôtels">Appart et hôtels</option>
+				<option value="retaurants et bar">retaurants et bar</option>
+			</select>
+
+</form>
+<div class="bottom-modal">
+<div class="greyLine"></div>
+<button type="button" id="addPhoto">Valider</button>
+</div>
+
 			</div>
 		</aside>
 	</div>
-		<div class="filters">
-			
-			
+		<div class="filters">	
 		</div>
-		<div class="gallery">
-			
+		<div class="gallery">	
 		</div>
 	</section>
 	<section id="contact">
@@ -99,8 +124,8 @@
 		</ul>
 	</nav>
 </footer>
-<script src="./scripts/modal.js"></script>
 <script src="./scripts/script.js"></script>
+<script src="./scripts/modal.js"></script>
 
 </div>
 </body>

@@ -4,6 +4,9 @@ let gallerymodal = document.querySelector(".gallerymodal");
 
 let imgData = [];
 let imgId;
+let garbage = document.querySelector(".icon-trash i");
+let token = localStorage.getItem("token");
+// console.log(token);
 
 // fonctionnement basique de la modal
 
@@ -66,7 +69,7 @@ const displayImgGalleryModal = async () => {
   gallerymodal.innerHTML = imgData
     .map(
       (img) =>
-        `<div class="gallerymodal-card" id="${img.id}">
+        `<div class="gallerymodal-card" id="${img.id}" data-cardId="${img.id}">
           <img class="gallerymodal-card-img" src=${img.imageUrl}>
           <div class="icon-trash"><i id="${img.id}" class="fa-solid fa-trash-can"></i></div>
           <button class="gallerymodal-card-btn">éditer</button>
@@ -83,34 +86,32 @@ const selectGarbageOnClick = async () => {
 
   galleryCards.forEach((card) => {
     let cardId = card.id;
-    // console.log(cardId);
-    let garbage = document.querySelector(".icon-trash i");
-    // console.log(garbage);
+    console.log(cardId);
+    console.log(card.dataset.cardid);
     card.addEventListener("click", (event) => {
+      event.preventDefault();
       // console.log(event.target.id);
       let garbageId = event.target.id;
       // console.log(garbageId);
 
-      if (garbageId === cardId) {
+      if (garbageId === cardId || localStorage.getItem("token")) {
         // confirm() à la place ?
         alert(
           "Attention vous allez supprimer la photo numéro " + cardId + " ?"
         );
-        deleteImg(cardId);
+        fetch(`http://localhost:5678/api/works/${cardId}`, {
+          method: "DELETE",
+          headers: { Authorization: `Bearer ${token}` },
+        }).then((response) => {
+          if (response.ok) {
+            console.log("projet supprimé");
+            // Puis mise à jour de la gallerie et de la page index
+            displayImgGalleryModal();
+            displayAllWorks();
+          }
+        });
       }
     });
   });
 };
 selectGarbageOnClick();
-
-const deleteImg = async () => {
-  // fetch DELETE
-  if (localStorage.getItem("token")) {
-    const deleteRes = await fetch("http://localhost:5678/api/works/${cardId}", {
-      method: "DELETE",
-      headers: { Authorization: "Bearer ${token}" },
-    });
-    let deleteImg = await deleteRes.json();
-    console.log(deleteImg);
-  }
-};
