@@ -178,7 +178,7 @@ nav li a {
 
 #contact, #form_container {
 	width: 50%;
-margin: auto;
+	margin: auto;
 }
 #contact, #form_container > * {
 	text-align: center;
@@ -346,16 +346,14 @@ footer nav ul {
 	margin-top: 30px;
 	color:black;
 }
-.fa-xmark {
- margin-left: 580px;
- margin-top: 40px;
-}
+
 .btn-closeModal{
 	border: none;
 	background: none;
 	width: 24px;
 	height: 24px;
 	cursor: pointer;
+	margin: 20px;
 }
 .close-modal-text{
 	display: none;
@@ -372,7 +370,7 @@ footer nav ul {
 	margin: auto;
 	margin-bottom: 30px;
 }
-#addPhoto{
+#addPhoto {
 	font-family: 'Syne';
 	font-size: 14px;
 	font-weight: 700;
@@ -447,27 +445,115 @@ footer nav ul {
     margin-left: 55px;
 }
 /* ____ dl nouvelle image ____ */
-
+.modal-wrapper2{
+	position: absolute;
+    width: 629px;
+    height: 731px;
+    top: 660px;
+    left: 405px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 1);
+}
+.btn-nav {
+	display: flex;
+	justify-content: space-between;
+}
+.btn-goback {
+	/* img a choper en svg sur figma */
+	border: none;
+	background: none;
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+	margin: 20px;
+}
+.btn-closeModal-2{
+	border: none;
+	background: none;
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+	margin: 20px;
+}
+.modal-wrapper2 h1 {
+	font-family: 'Work Sans';
+	font-size: 26px;
+	font-weight: 400;
+	line-height: 30px;
+	text-align: center;
+	margin-bottom: 30px;
+	color:black;
+}
 .imgDownload {
 	width: 420px;
 	height: 169px;
-display: flex;
-justify-content: center;
-align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	margin: auto;
+	align-items: center;
 	border-radius: 3px;
 	background-color: #E8F1F6;
 }
-.formatPhoto{
+.btn-downloadPhoto, #btn-valid  {
 	font-family: 'Work Sans';
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16px;
+	letter-spacing: 0em;
+	text-align: center;
+	width: 173px;
+	height: 36px;
+	border-radius: 50px;
+	color: white;
+	background: #B3B3B3;
+	border: 1px solid #B3B3B3;
+	cursor: pointer;
+}
+.formatPhoto{
+	font-family: Work Sans;
+	font-size: 10px;
+	font-weight: 400;
+	line-height: 12px;
+	letter-spacing: 0em;
+	text-align: center;
 }
 .icon-img{
 	width: 76px;
 	height: 76px;
-	top: 799px;
-	left: 681px;
-	padding: 9.5px 3.93px 6.87px 3.93px;
 }
-.fa-image {
-color: #B9C5CC;
-font-weight:normal;
+.new-photo-container{
+	margin: auto;
+	width: 420px;
+	height: 270px;
 }
+.new-photo-container form {
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+}
+.new-photo-container label{
+margin: 2em 0 1em 0;
+}
+
+.new-photo-container input, .new-photo-container select {
+	width: 420px;
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+.bottom-modal2{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 420px;
+	margin: auto;
+}
+#btn-valid {
+	margin:auto;
+}
+#btn-valid:hover {
+background-color: #1D6154;
+}
+
