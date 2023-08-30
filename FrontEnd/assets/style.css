@@ -327,7 +327,7 @@ footer nav ul {
 	background: rgba(0,0,0,0.3);
 	display: none;
 }
-.modal-wrapper{
+.modal-wrapper {
 	position: absolute;
     width: 629px;
     height: 731px;
@@ -336,14 +336,21 @@ footer nav ul {
     border-radius: 10px;
     background: rgba(255, 255, 255, 1);
 }
-.modal-wrapper h1 {
+.delete-img {
+display: block;
+}
+.add-img {
+	display: none;
+}
+.delete-img h1, .add-img h1 {
 	font-family: 'Work Sans';
 	font-size: 26px;
 	font-weight: 400;
 	line-height: 30px;
 	letter-spacing: 0em;
 	text-align: center;
-	margin-top: 30px;
+	margin-top: 100px;
+	margin-bottom: 30px;
 	color:black;
 }
 
@@ -353,7 +360,8 @@ footer nav ul {
 	width: 24px;
 	height: 24px;
 	cursor: pointer;
-	margin: 20px;
+	margin:20px;
+	float: right;
 }
 .close-modal-text{
 	display: none;
@@ -445,7 +453,7 @@ footer nav ul {
     margin-left: 55px;
 }
 /* ____ dl nouvelle image ____ */
-.modal-wrapper2{
+/* .modal-wrapper2{
 	position: absolute;
     width: 629px;
     height: 731px;
@@ -453,28 +461,22 @@ footer nav ul {
     left: 405px;
     border-radius: 10px;
     background: rgba(255, 255, 255, 1);
-}
+} */
 .btn-nav {
 	display: flex;
 	justify-content: space-between;
 }
 .btn-goback {
-	/* img a choper en svg sur figma */
+	display: none;
 	border: none;
 	background: none;
 	width: 24px;
 	height: 24px;
 	cursor: pointer;
+	float: left;
 	margin: 20px;
 }
-.btn-closeModal-2{
-	border: none;
-	background: none;
-	width: 24px;
-	height: 24px;
-	cursor: pointer;
-	margin: 20px;
-}
+
 .modal-wrapper2 h1 {
 	font-family: 'Work Sans';
 	font-size: 26px;

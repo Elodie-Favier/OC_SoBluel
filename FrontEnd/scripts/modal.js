@@ -1,7 +1,11 @@
 let modal = null;
 let gallerymodal = document.querySelector(".gallerymodal");
 // console.log(gallerymodal);
+let deleteImage = document.querySelector(".delete-img");
+let addImg = document.getElementById("addPhoto");
 
+let addImage = document.querySelector(".add-img");
+let arrowLeft = document.querySelector(".btn-goback");
 let imgData = [];
 let imgId;
 let garbage = document.querySelector(".icon-trash i");
@@ -17,6 +21,9 @@ const openModal = function (e) {
   target.setAttribute("aria-hidden", "false");
   target.setAttribute("aria-modal", "true");
   modal = target;
+  deleteImage.style.display = "block";
+  addImage.style.display = "none";
+  arrowLeft.style.display = "none";
   modal.addEventListener("click", closeModal);
   modal.querySelector(".js-modal-close").addEventListener("click", closeModal);
   modal
@@ -115,3 +122,24 @@ const selectGarbageOnClick = async () => {
   });
 };
 selectGarbageOnClick();
+
+addImg.addEventListener("click", (e) => {
+  console.log("clic sur bouton");
+  arrowLeft.style.display = "block";
+  addImage.style.display = "block";
+  deleteImage.style.display = "none";
+});
+arrowLeft.addEventListener("click", (e) => {
+  console.log("clic sur fleche go back");
+  deleteImage.style.display = "block";
+  addImage.style.display = "none";
+  arrowLeft.style.display = "none";
+});
+// aller sur "ajouter une photo"
+
+// ajouter un projet
+
+// en cliquant sur ajouter photo je dois pouvoir aller telecharger une image dnas mes dossiers -> quelle est la fonction pour ça ?
+// Je suis obligée de mettre un titre et de sélectionner une catégorie (donc aller réccupérer les catégories.)il doit y avoir un message d'alerte si je ne renseigne pas les champs en question et je ne peux pas valider l'ajout du nouveau projet si tous les champs ne sont pas renseignés
+
+// donc il faut : une fonction qui va chercher les catégories ou je réccupere la fonction qui les trouvent déjà
