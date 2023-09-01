@@ -15,11 +15,11 @@
 <body>
 	<div class="admin">
 	<div class="adminBlock">
-		<div class="infoEtBtn">
+		<div class="infoEdition">
 			<div class="infoMode">
 				<i class="fa-regular fa-pen-to-square"></i><p>Mode édition</p>
 			</div>
-			<button type="submit" class="btnPublish">publier les changements</button>
+		
 		</div>
 	</div>
 </div>
@@ -67,38 +67,38 @@
 					<div class="bottom-modal">
 <div class="greyLine"></div>
 <button type="button" id="addPhoto">Ajouter une photo</button>
-<p class="deleteGallery">Supprimer la galerie</p>
+
 					</div>
 			</div>
 			
-			<div class="add-img">
-				
-				<!-- <button class="js-modal-goback btn-goback"><img src="assets/icons/vector-arrowleft.png" class="arrow-left" alt="icone de la flèche pour revenir en arrière"><span class="close-modal-text">Retour en arrière</span></button> -->
-
-				<!-- <button class="js-modal-close btn-closeModal-2"><img src="assets/icons/vector-cross.png" class=".btn-closeModal-2" alt="icone croix pour fermer la modal"><span class="close-modal-text">Fermer la boîte</span></button> -->
-				
-			
+			<div class="add-img">	
 			<h1 id="titleModal">Ajout photo</h1>
 			<div class="imgDownload">
-			<div class="icon-img"><img src="assets/icons/vector-icon-img.png" class="icon-img" alt="icone image à télécharger"></div>
-			<button class="btn-downloadPhoto">+ ajouter photo</button>
+			<div class="icon-img"><img src="assets/icons/vector-icon-img.png"  alt="icone image à télécharger"></div>
+			<button class="btn-downloadPhoto"><label class="labelajoutphoto" for="ajoutphoto">+ Ajouter photo</label></button>
+			<input id="ajoutphoto" type="file" name="ajoutphoto" accept="image/png, image/jpeg">
+			<span class="error-img"></span>
+			
 			<p class="formatPhoto">jpg, png : 4mo max</p>
 			</div>
 			<div class="new-photo-container">
-			<form class="js-modal-stop" action="#" method="post">
+			<form id="formAddImage" class="js-modal-stop" action="#" method="post">
+				
 				<label for="titre">Titre</label>
-				<input type="text" name="titre" id="titre">
-				<label for="categorie">Catégorie</label>
-				<select type="text" name="categorie" id="categorie">
-					<option value="objets">objets</option>
-					<option value="Appart et hôtels">Appart et hôtels</option>
-					<option value="retaurants et bar">retaurants et bar</option>
+				<input type="text" name="titre" id="titre" placeholder="ex : Villa Vieille - Villeurbanne-les-Plages">
+				<span class="error-title"></span>
+				<div class="categorie-container">
+				<label for="categorie-Image">Catégorie</label>
+				<select type="text" name="categorie" id="categorie-Image">
+					<option value=""></option>
 				</select>
+				</div>
+				<span class="error-categorie">Vous devez renseigner une catégorie</span>
 			</form>
 			</div>
 			<div class="bottom-modal2">
 				<div class="greyLine"></div>
-				<button type="button" id="btn-valid">Valider</button>
+				<button type="submit" id="btn-valid">Valider</button>
 			</div>
 			</div>
 		</div>

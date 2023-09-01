@@ -79,7 +79,6 @@ const displayImgGalleryModal = async () => {
         `<div class="gallerymodal-card" id="${img.id}" data-cardId="${img.id}">
           <img class="gallerymodal-card-img" src=${img.imageUrl}>
           <div class="icon-trash"><i id="${img.id}" class="fa-solid fa-trash-can"></i></div>
-          <button class="gallerymodal-card-btn">éditer</button>
         </div>`
     )
     .join("");
@@ -139,6 +138,59 @@ arrowLeft.addEventListener("click", (e) => {
 
 // ajouter un projet
 
+// partie img je peux aller chercher une image dans doss mais elle n'apparait pas dans le cadre.
+
+const uploadImage = () => {
+  // je reccupère le bouton ajout image, je l'écoute et si j'ai un e = ??? alors j'affiche dans une bal img
+  // si le format nest pas le bon format
+  let dlImage = document.getElementById("ajoutphoto");
+  console.log(dlImage);
+};
+uploadImage();
+let formAddImage = document.getElementById("formAddImage");
+console.log(formAddImage);
+
+let addImageCategory = document.getElementById("categorie");
+console.log(addImageCategory);
+
+const titleChecker = (value) => {
+  let errorDisplay = document.querySelector(".error-title");
+  let addImageTitle = document.getElementById("titre");
+
+  addImageTitle.addEventListener("input", (e) => {
+    let titre = e.target.value;
+    if (titre.length > 0 && titre.length < 3) {
+      errorDisplay.style.visibility = "visible";
+      errorDisplay.textContent =
+        "Vous devez renseigner un titre entre 3 et 50 caractères";
+    } else {
+      errorDisplay.style.visibility = "hidden";
+    }
+  });
+};
+titleChecker();
+// addImageTitle.addEventListener("");
+
+const categoryChoice = async () => {
+  await getCategory();
+  let CategoriesImages = document.getElementById("categorie-Image");
+
+  CategoriesImages.innerHTML = categories
+    .map(
+      (categorie) =>
+        `
+        <option value="${categorie.name}">${categorie.name}</option>
+`
+    )
+    .join("");
+};
+categoryChoice();
+
+const formOk = () => {
+  // bon remplissage du formulaire
+};
+
+// si le form est bien rempli alors btn valider change de couleur
 // en cliquant sur ajouter photo je dois pouvoir aller telecharger une image dnas mes dossiers -> quelle est la fonction pour ça ?
 // Je suis obligée de mettre un titre et de sélectionner une catégorie (donc aller réccupérer les catégories.)il doit y avoir un message d'alerte si je ne renseigne pas les champs en question et je ne peux pas valider l'ajout du nouveau projet si tous les champs ne sont pas renseignés
 

@@ -239,11 +239,12 @@ footer nav ul {
 	width: 100%;
 }
 
-.error {
-	margin: 2em 0 1em 0;
+.error-img, .error-title, .error-categorie {
+	margin: 1em 0 1em 0;
 	color:#EC6D5C;
 	font-weight: bold;
-	display: none;
+	text-align: center;
+	visibility: hidden;
 }
 
 /* ----------- edition mode -----------  */
@@ -256,9 +257,10 @@ footer nav ul {
 	height: 59px;
 	justify-content: center	;
 }
-.infoEtBtn {
+.infoEdition {
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 }
 .infoMode{
 	display: flex; 
@@ -279,16 +281,7 @@ footer nav ul {
 	padding-right: 10px;
 
 }
-.btnPublish{
-	background-color: white;
-	margin : 2em auto ;
-	width: 216px;
-	height: 38px;
-	margin: 10px;
-	text-align: center;
-	border-radius: 60px ;
-	cursor: pointer;
-}
+
 .projetsEtEditProjets{
 	display: flex;
 	flex-direction: row;
@@ -397,15 +390,7 @@ display: block;
 	border: 1px solid #1D6154;
 	cursor: pointer;
 }
-.deleteGallery{
-	font-family: 'Syne';
-	font-size: 14px;
-	font-weight: 400;
-	line-height: 17px;
-	letter-spacing: 0em;
-	text-align: center;
-	color: rgba(214, 83, 83, 1);
-}
+
 
 .gallerymodal{
 	display: flex;
@@ -496,8 +481,34 @@ display: block;
 	align-items: center;
 	border-radius: 3px;
 	background-color: #E8F1F6;
+	position: relative;
 }
-.btn-downloadPhoto, #btn-valid  {
+/* input[type="file"]::file-selector-button{
+	visibility: hidden;
+} */
+#ajoutphoto {
+visibility: hidden;
+position: absolute;
+bottom: 40px;
+}
+.btn-downloadPhoto{
+	text-align: center;
+	align-items: center;
+	width: 173px;
+	height: 36px;
+	border-radius: 50px;
+	background: #CBD6DC;
+	border: 1px solid #CBD6DC;
+	cursor: pointer;
+}
+.labelajoutphoto{
+	color: #306685;
+	font-family: 'Work Sans';
+	line-height: 16px;
+	font-size: 14px;
+	font-weight: 500;
+}
+#btn-valid  {
 	font-family: 'Work Sans';
 	font-size: 14px;
 	font-weight: 500;
@@ -523,6 +534,8 @@ display: block;
 .icon-img{
 	width: 76px;
 	height: 76px;
+	display: flex;
+	align-items: center;
 }
 .new-photo-container{
 	margin: auto;
@@ -535,7 +548,7 @@ display: block;
 	flex-direction: column;
 }
 .new-photo-container label{
-margin: 2em 0 1em 0;
+margin: 1em 0 1em 0;
 }
 
 .new-photo-container input, .new-photo-container select {
