@@ -74,13 +74,14 @@
 			<div class="add-img">	
 			<h1 id="titleModal">Ajout photo</h1>
 			<div class="imgDownload">
+				<div class="preview-img"></div>
 			<div class="icon-img"><img src="assets/icons/vector-icon-img.png"  alt="icone image à télécharger"></div>
-			<button class="btn-downloadPhoto"><label class="labelajoutphoto" for="ajoutphoto">+ Ajouter photo</label></button>
-			<input id="ajoutphoto" type="file" name="ajoutphoto" accept="image/png, image/jpeg">
-			<span class="error-img"></span>
-			
+			<button class="btn-downloadPhoto" type="button" ><label class="labelajoutphoto" for="ajoutphoto">+ Ajouter photo</label></button>
+			<input id="ajoutphoto" class="visually-hidden" onchange="previewPicture(this)" type="file" name="previewPicture" accept="image/png, image/jpeg, image/jpg" required>
 			<p class="formatPhoto">jpg, png : 4mo max</p>
+			<span class="error-img"></span>
 			</div>
+			
 			<div class="new-photo-container">
 			<form id="formAddImage" class="js-modal-stop" action="#" method="post">
 				

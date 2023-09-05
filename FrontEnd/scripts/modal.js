@@ -1,16 +1,21 @@
+// mes variables
+
 let modal = null;
 let gallerymodal = document.querySelector(".gallerymodal");
-// console.log(gallerymodal);
 let deleteImage = document.querySelector(".delete-img");
 let addImg = document.getElementById("addPhoto");
-
+const previewImage = document.querySelector(".preview-img");
+const img = document.createElement("img");
+previewImage.appendChild(img);
+img.classList.add("new-prev-img");
 let addImage = document.querySelector(".add-img");
 let arrowLeft = document.querySelector(".btn-goback");
+let formAddImage = document.getElementById("formAddImage");
+let addImageCategory = document.getElementById("categorie");
 let imgData = [];
 let imgId;
 let garbage = document.querySelector(".icon-trash i");
 let token = localStorage.getItem("token");
-// console.log(token);
 
 // fonctionnement basique de la modal
 
@@ -61,6 +66,22 @@ window.addEventListener("keydown", function (e) {
   }
 });
 
+// navigation fleche et croix
+
+addImg.addEventListener("click", (e) => {
+  console.log("clic sur bouton");
+  arrowLeft.style.display = "block";
+  addImage.style.display = "block";
+  deleteImage.style.display = "none";
+});
+arrowLeft.addEventListener("click", (e) => {
+  console.log("clic sur fleche go back");
+  deleteImage.style.display = "block";
+  addImage.style.display = "none";
+  previewImage.style.display = "none";
+  arrowLeft.style.display = "none";
+});
+
 // affichage des images et des icones trash
 
 const getImgGalleryModal = async () => {
@@ -72,7 +93,6 @@ getImgGalleryModal();
 
 const displayImgGalleryModal = async () => {
   await getImgGalleryModal();
-
   gallerymodal.innerHTML = imgData
     .map(
       (img) =>
@@ -85,6 +105,8 @@ const displayImgGalleryModal = async () => {
 };
 displayImgGalleryModal();
 
+// suppression d'une image
+
 const selectGarbageOnClick = async () => {
   await displayImgGalleryModal();
 
@@ -92,19 +114,12 @@ const selectGarbageOnClick = async () => {
 
   galleryCards.forEach((card) => {
     let cardId = card.id;
-    console.log(cardId);
-    console.log(card.dataset.cardid);
     card.addEventListener("click", (event) => {
       event.preventDefault();
-      // console.log(event.target.id);
+
       let garbageId = event.target.id;
-      // console.log(garbageId);
 
       if (garbageId === cardId || localStorage.getItem("token")) {
-        // confirm() à la place ?
-        alert(
-          "Attention vous allez supprimer la photo numéro " + cardId + " ?"
-        );
         fetch(`http://localhost:5678/api/works/${cardId}`, {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` },
@@ -122,36 +137,36 @@ const selectGarbageOnClick = async () => {
 };
 selectGarbageOnClick();
 
-addImg.addEventListener("click", (e) => {
-  console.log("clic sur bouton");
-  arrowLeft.style.display = "block";
-  addImage.style.display = "block";
-  deleteImage.style.display = "none";
-});
-arrowLeft.addEventListener("click", (e) => {
-  console.log("clic sur fleche go back");
-  deleteImage.style.display = "block";
-  addImage.style.display = "none";
-  arrowLeft.style.display = "none";
-});
-// aller sur "ajouter une photo"
+// Ajouter une photo
+// affichage des images dans la fenêtre de prévisualisation
 
-// ajouter un projet
+let previewPicture = function (e) {
+  const [picture] = e.files;
+  console.log(e.files);
 
-// partie img je peux aller chercher une image dans doss mais elle n'apparait pas dans le cadre.
-
-const uploadImage = () => {
-  // je reccupère le bouton ajout image, je l'écoute et si j'ai un e = ??? alors j'affiche dans une bal img
-  // si le format nest pas le bon format
-  let dlImage = document.getElementById("ajoutphoto");
-  console.log(dlImage);
+  if (picture) {
+    for (const file of e.files) {
+      if (
+        file.size <= 4194304 &&
+        (file.type === "image/jpeg" || file.type === "image/png")
+      ) {
+        previewImage.style.display = "block";
+        let reader = new FileReader();
+        reader.onload = function (e) {
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(picture);
+      } else {
+        let errorImg = document.querySelector(".error-img");
+        // console.log(errorImg);
+        errorImg.style.visibility = "visible";
+        errorImg.textContent = "La taille de l'image ne doit pas dépasser 4 mo";
+      }
+    }
+  }
 };
-uploadImage();
-let formAddImage = document.getElementById("formAddImage");
-console.log(formAddImage);
 
-let addImageCategory = document.getElementById("categorie");
-console.log(addImageCategory);
+// Verifier la présence du titre
 
 const titleChecker = (value) => {
   let errorDisplay = document.querySelector(".error-title");
@@ -168,8 +183,10 @@ const titleChecker = (value) => {
     }
   });
 };
+
 titleChecker();
-// addImageTitle.addEventListener("");
+
+// affichage des catégories dans le selecteur
 
 const categoryChoice = async () => {
   await getCategory();
@@ -186,12 +203,6 @@ const categoryChoice = async () => {
 };
 categoryChoice();
 
-const formOk = () => {
-  // bon remplissage du formulaire
+const formValid = () => {
+  // bon remplissage du formulaire et envoi à l'api
 };
-
-// si le form est bien rempli alors btn valider change de couleur
-// en cliquant sur ajouter photo je dois pouvoir aller telecharger une image dnas mes dossiers -> quelle est la fonction pour ça ?
-// Je suis obligée de mettre un titre et de sélectionner une catégorie (donc aller réccupérer les catégories.)il doit y avoir un message d'alerte si je ne renseigne pas les champs en question et je ne peux pas valider l'ajout du nouveau projet si tous les champs ne sont pas renseignés
-
-// donc il faut : une fonction qui va chercher les catégories ou je réccupere la fonction qui les trouvent déjà
