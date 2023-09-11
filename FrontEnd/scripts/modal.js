@@ -10,8 +10,13 @@ previewImage.appendChild(img);
 img.classList.add("new-prev-img");
 let addImage = document.querySelector(".add-img");
 let arrowLeft = document.querySelector(".btn-goback");
-let formAddImage = document.getElementById("formAddImage");
+let form = document.getElementById("formAddImage");
 let addImageCategory = document.getElementById("categorie");
+let addImageTitle = document.getElementById("titre");
+let titre;
+let indexCategorie;
+const valid = document.getElementById("btn-valid");
+
 let imgData = [];
 let imgId;
 let garbage = document.querySelector(".icon-trash i");
@@ -69,7 +74,6 @@ window.addEventListener("keydown", function (e) {
 // navigation fleche et croix
 
 addImg.addEventListener("click", (e) => {
-  console.log("clic sur bouton");
   arrowLeft.style.display = "block";
   addImage.style.display = "block";
   deleteImage.style.display = "none";
@@ -111,6 +115,7 @@ const selectGarbageOnClick = async () => {
   await displayImgGalleryModal();
 
   let galleryCards = document.querySelectorAll(".gallerymodal-card");
+  // console.log(galleryCards);
 
   galleryCards.forEach((card) => {
     let cardId = card.id;
@@ -140,10 +145,27 @@ selectGarbageOnClick();
 // Ajouter une photo
 // affichage des images dans la fenêtre de prévisualisation
 
+//  affichage des messages d'erreur
+
+let image, title, categorie;
+
+const errorDisplaySpan = (tag, message, valid) => {
+  const box = document.querySelector("." + tag + "-box");
+  const span = document.querySelector("." + tag + "-box > span");
+
+  if (!valid) {
+    span.classList.add("error");
+    span.textContent = message;
+  } else {
+    box.classList.remove("error");
+    span.textContent = message;
+  }
+};
+
+const formValid = async () => {};
+
 let previewPicture = function (e) {
   const [picture] = e.files;
-  console.log(e.files);
-
   if (picture) {
     for (const file of e.files) {
       if (
@@ -156,11 +178,13 @@ let previewPicture = function (e) {
           img.src = e.target.result;
         };
         reader.readAsDataURL(picture);
+        image = e.files[0];
       } else {
-        let errorImg = document.querySelector(".error-img");
-        // console.log(errorImg);
-        errorImg.style.visibility = "visible";
-        errorImg.textContent = "La taille de l'image ne doit pas dépasser 4 mo";
+        errorDisplaySpan(
+          "image",
+          "La taille de l'image ne doit pas dépasser 4 mo"
+        );
+        image = null;
       }
     }
   }
@@ -169,17 +193,18 @@ let previewPicture = function (e) {
 // Verifier la présence du titre
 
 const titleChecker = (value) => {
-  let errorDisplay = document.querySelector(".error-title");
-  let addImageTitle = document.getElementById("titre");
-
   addImageTitle.addEventListener("input", (e) => {
-    let titre = e.target.value;
+    titre = e.target.value;
+
     if (titre.length > 0 && titre.length < 3) {
-      errorDisplay.style.visibility = "visible";
-      errorDisplay.textContent =
-        "Vous devez renseigner un titre entre 3 et 50 caractères";
+      errorDisplaySpan(
+        "title",
+        "Vous devez renseigner un titre entre 3 et 50 caractères"
+      );
+      title = null;
     } else {
-      errorDisplay.style.visibility = "hidden";
+      errorDisplaySpan("title", "", true);
+      title = titre;
     }
   });
 };
@@ -187,22 +212,61 @@ const titleChecker = (value) => {
 titleChecker();
 
 // affichage des catégories dans le selecteur
+let selectCategory = document.getElementById("selectCat");
 
-const categoryChoice = async () => {
+const categoryChoose = async () => {
   await getCategory();
-  let CategoriesImages = document.getElementById("categorie-Image");
-
-  CategoriesImages.innerHTML = categories
+  const emptyCategory = '<option class="cat-option" value=""></option>';
+  const categoriesChoice = categories
     .map(
       (categorie) =>
         `
-        <option value="${categorie.name}">${categorie.name}</option>
+        <option class="cat-option" value="${categorie.name}">${categorie.name}</option>
 `
     )
     .join("");
-};
-categoryChoice();
+  selectCategory.innerHTML = emptyCategory + categoriesChoice;
 
-const formValid = () => {
-  // bon remplissage du formulaire et envoi à l'api
+  selectCategory.addEventListener("change", () => {
+    indexCategorie = selectCategory.selectedIndex;
+    if (indexCategorie > 0) {
+      errorDisplaySpan("categorie", "", true);
+      categorie = indexCategorie;
+    } else {
+      errorDisplaySpan("categorie", "Choisissez une catégorie");
+      categorie = null;
+    }
+  });
 };
+
+categoryChoose();
+
+form.addEventListener("change", updateValue);
+function updateValue(e) {
+  if (image && title && categorie) {
+    valid.style.background = "#1D6154";
+  } else {
+    valid.style.background = "#B3B3B3;";
+  }
+}
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  if (image && title && categorie) {
+    const newData = {
+      image: image,
+      title: title,
+      id: categorie,
+    };
+    console.log(newData);
+    previewImage.style.display = "none";
+    addImageTitle.value = "";
+    categoryChoose();
+
+    image = null;
+    title = null;
+    categorie = null;
+  } else {
+    alert("Veuillez renseigner tous les champs du formulaire");
+  }
+});

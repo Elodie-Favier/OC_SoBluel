@@ -239,11 +239,11 @@ footer nav ul {
 	width: 100%;
 }
 
-.error-img, .error-title, .error-categorie {
+.error {
 	color:#EC6D5C;
 	font-weight: bold;
 	text-align: center;
-	visibility: hidden;
+	/* visibility: hidden; */
 }
 
 /* ----------- edition mode -----------  */
@@ -470,7 +470,7 @@ display: block;
 	margin-bottom: 30px;
 	color:black;
 }
-.imgDownload {
+.image-box {
 	width: 420px;
 	height: 169px;
 	display: flex;
@@ -562,21 +562,21 @@ bottom: 40px;
 	display: flex;
 	align-items: center;
 }
-.new-photo-container{
+.title-box, .categorie-box{
 	margin: auto;
 	width: 420px;
-	height: 270px;
+	height: 145px;
 }
-.new-photo-container form {
+.title-box form, .categorie-box form {
 	text-align: left;
 	display: flex;
 	flex-direction: column;
 }
-.new-photo-container label{
+.title-box label, .categorie-box label{
 margin: 1em 0 1em 0;
 }
 
-.new-photo-container input, .new-photo-container select {
+.title-box input, .categorie-box select {
 	width: 420px;
 	height: 50px;
 	font-size: 1.2em;
@@ -592,8 +592,5 @@ margin: 1em 0 1em 0;
 }
 #btn-valid {
 	margin:auto;
-}
-#btn-valid:hover {
-background-color: #1D6154;
 }
 

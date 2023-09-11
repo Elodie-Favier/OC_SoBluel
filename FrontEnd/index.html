@@ -73,36 +73,39 @@
 			
 			<div class="add-img">	
 			<h1 id="titleModal">Ajout photo</h1>
-			<div class="imgDownload">
+				<!-- form debut -->
+			<form id="formAddImage" class="js-modal-stop" action="#" method="post">
+		
+			<div class="image-box">
 				<div class="preview-img"></div>
-			<div class="icon-img"><img src="assets/icons/vector-icon-img.png"  alt="icone image à télécharger"></div>
-			<button class="btn-downloadPhoto" type="button" ><label class="labelajoutphoto" for="ajoutphoto">+ Ajouter photo</label></button>
-			<input id="ajoutphoto" class="visually-hidden" onchange="previewPicture(this)" type="file" name="previewPicture" accept="image/png, image/jpeg, image/jpg" required>
-			<p class="formatPhoto">jpg, png : 4mo max</p>
-			<span class="error-img"></span>
+				<div class="icon-img"><img src="assets/icons/vector-icon-img.png"  alt="icone image à télécharger"></div>
+				<button class="btn-downloadPhoto" type="button" ><label class="labelajoutphoto" for="ajoutphoto">+ Ajouter photo</label></button>
+				<input id="ajoutphoto" class="visually-hidden" onchange="previewPicture(this)" type="file" name="file" accept="image/png, image/jpeg, image/jpg" required>
+				<p class="formatPhoto">jpg, png : 4mo max</p>
+				<span></span>
 			</div>
 			
-			<div class="new-photo-container">
-			<form id="formAddImage" class="js-modal-stop" action="#" method="post">
-				
+			<div class="title-box">
 				<label for="titre">Titre</label>
 				<input type="text" name="titre" id="titre" placeholder="ex : Villa Vieille - Villeurbanne-les-Plages">
-				<span class="error-title"></span>
-				<div class="categorie-container">
-				<label for="categorie-Image">Catégorie</label>
-				<select type="text" name="categorie" id="categorie-Image">
+				<span></span>
+			</div>
+			<div class="categorie-box">
+				<label for="selectCat">Catégorie</label>
+				<select type="text" name="selectCat" id="selectCat">
 					<option value=""></option>
 				</select>
-				</div>
-				<span class="error-categorie">Vous devez renseigner une catégorie</span>
-			</form>
+				<span></span>
 			</div>
+			
 			<div class="bottom-modal2">
 				<div class="greyLine"></div>
 				<button type="submit" id="btn-valid">Valider</button>
 			</div>
-			</div>
+		</form>
+			<!-- form fin -->
 		</div>
+			
 		</aside>
 		</div>
 		<div class="filters">	
