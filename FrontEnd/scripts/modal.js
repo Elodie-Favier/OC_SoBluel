@@ -1,4 +1,8 @@
-// mes variables
+// mes variables fonctionnement modale
+
+// mes variables delete work
+
+// mes variables add work
 
 let modal = null;
 let gallerymodal = document.querySelector(".gallerymodal");
@@ -10,7 +14,7 @@ previewImage.appendChild(img);
 img.classList.add("new-prev-img");
 let addImage = document.querySelector(".add-img");
 let arrowLeft = document.querySelector(".btn-goback");
-let form = document.getElementById("formAddImage");
+let formImage = document.getElementById("formNewImage");
 let addImageCategory = document.getElementById("categorie");
 let addImageTitle = document.getElementById("titre");
 let titre;
@@ -147,7 +151,9 @@ selectGarbageOnClick();
 
 //  affichage des messages d'erreur
 
-let image, title, categorie;
+let image, title, category;
+
+// fonction d'affichage des messages d'erreur
 
 const errorDisplaySpan = (tag, message, valid) => {
   const box = document.querySelector("." + tag + "-box");
@@ -162,7 +168,7 @@ const errorDisplaySpan = (tag, message, valid) => {
   }
 };
 
-const formValid = async () => {};
+// affichage de l'image et reccupération de
 
 let previewPicture = function (e) {
   const [picture] = e.files;
@@ -179,6 +185,7 @@ let previewPicture = function (e) {
         };
         reader.readAsDataURL(picture);
         image = e.files[0];
+        console.log(image);
       } else {
         errorDisplaySpan(
           "image",
@@ -195,6 +202,7 @@ let previewPicture = function (e) {
 const titleChecker = (value) => {
   addImageTitle.addEventListener("input", (e) => {
     titre = e.target.value;
+    console.log(titre);
 
     if (titre.length > 0 && titre.length < 3) {
       errorDisplaySpan(
@@ -205,6 +213,7 @@ const titleChecker = (value) => {
     } else {
       errorDisplaySpan("title", "", true);
       title = titre;
+      console.log("title");
     }
   });
 };
@@ -212,6 +221,7 @@ const titleChecker = (value) => {
 titleChecker();
 
 // affichage des catégories dans le selecteur
+
 let selectCategory = document.getElementById("selectCat");
 
 const categoryChoose = async () => {
@@ -231,41 +241,59 @@ const categoryChoose = async () => {
     indexCategorie = selectCategory.selectedIndex;
     if (indexCategorie > 0) {
       errorDisplaySpan("categorie", "", true);
-      categorie = indexCategorie;
+      category = indexCategorie;
     } else {
       errorDisplaySpan("categorie", "Choisissez une catégorie");
-      categorie = null;
+      category = null;
     }
   });
 };
 
 categoryChoose();
 
-form.addEventListener("change", updateValue);
+formImage.addEventListener("change", updateValue);
 function updateValue(e) {
-  if (image && title && categorie) {
+  if (image && title && category) {
     valid.style.background = "#1D6154";
+    valid.disabled = false;
   } else {
-    valid.style.background = "#B3B3B3;";
+    valid.style.background = "#B3B3B3";
+    valid.disabled = true;
   }
 }
 
-form.addEventListener("submit", (e) => {
+formImage.addEventListener("submit", (e) => {
   e.preventDefault();
-  if (image && title && categorie) {
-    const newData = {
-      image: image,
-      title: title,
-      id: categorie,
-    };
+  if ((image && title && category) || localStorage.getItem("token")) {
+    const formData = new FormData(formImage);
+    formData.append("image", image);
+    formData.append("title", title);
+    formData.append("category", category);
+
+    const newData = { image, title, category };
     console.log(newData);
+
+    fetch(`http://localhost:5678/api/works`, {
+      method: "POST",
+      body: formData,
+      headers: { Authorization: `Bearer ${token}` },
+    }).then((response) => {
+      if (response.ok) {
+        console.log("projet ajouté");
+        // Puis mise à jour de la gallerie et de la page index
+        displayImgGalleryModal();
+        displayAllWorks();
+        console.log("Mise à jour des galleries");
+      }
+    });
+
     previewImage.style.display = "none";
     addImageTitle.value = "";
     categoryChoose();
-
+    valid.style.background = "#B3B3B3";
     image = null;
     title = null;
-    categorie = null;
+    category = null;
   } else {
     alert("Veuillez renseigner tous les champs du formulaire");
   }
