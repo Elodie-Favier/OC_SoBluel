@@ -1,7 +1,6 @@
 let log = document.querySelector(".log");
 let admin = document.querySelector(".admin");
 let editProjets = document.querySelector(".editProjets");
-let editImgSoB = document.querySelector(".editImgSoB");
 const myGallery = document.querySelector(".gallery");
 let filters = document.querySelector(".filters");
 let buttons = [];
@@ -106,6 +105,17 @@ if (localStorage.getItem("token")) {
   log.textContent = "Logout";
   filters.style.display = "none";
   admin.style.display = "block";
-  editImgSoB.style.display = "block";
+
   editProjets.style.display = "block";
 }
+
+// if click on logout
+
+log.addEventListener("click", () => {
+  localStorage.removeItem("token");
+  log.textContent = "Login";
+  filters.style.display = "block";
+  admin.style.display = "none";
+
+  editProjets.style.display = "none";
+});

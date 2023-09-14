@@ -8,10 +8,10 @@ let modal = null;
 let gallerymodal = document.querySelector(".gallerymodal");
 let deleteImage = document.querySelector(".delete-img");
 let addImg = document.getElementById("addPhoto");
-const previewImage = document.querySelector(".preview-img");
+const imageBox = document.querySelector(".image-box");
 const img = document.createElement("img");
-previewImage.appendChild(img);
-img.classList.add("new-prev-img");
+imageBox.appendChild(img);
+img.classList.add("preview-img");
 let addImage = document.querySelector(".add-img");
 let arrowLeft = document.querySelector(".btn-goback");
 let formImage = document.getElementById("formNewImage");
@@ -106,7 +106,7 @@ const displayImgGalleryModal = async () => {
       (img) =>
         `<div class="gallerymodal-card" id="${img.id}" data-cardId="${img.id}">
           <img class="gallerymodal-card-img" src=${img.imageUrl}>
-          <div class="icon-trash"><i id="${img.id}" class="fa-solid fa-trash-can"></i></div>
+          <div class="icon-trash"><i id="${img.id}" class="fa-solid fa-trash-can fa-xs"></i></div>
         </div>`
     )
     .join("");
@@ -178,18 +178,21 @@ let previewPicture = function (e) {
         file.size <= 4194304 &&
         (file.type === "image/jpeg" || file.type === "image/png")
       ) {
-        previewImage.style.display = "block";
+        img.style.display = "block";
+        const btnHtmlElementAjouterPhoto =
+          document.querySelector(".btn-downloadPhoto");
+        btnHtmlElementAjouterPhoto.style.display = "none";
         let reader = new FileReader();
         reader.onload = function (e) {
           img.src = e.target.result;
         };
         reader.readAsDataURL(picture);
         image = e.files[0];
-        console.log(image);
+        // console.log(image);
       } else {
         errorDisplaySpan(
           "image",
-          "La taille de l'image ne doit pas dépasser 4 mo"
+          "Attention au format et à la taille du fichier"
         );
         image = null;
       }
@@ -202,7 +205,7 @@ let previewPicture = function (e) {
 const titleChecker = (value) => {
   addImageTitle.addEventListener("input", (e) => {
     titre = e.target.value;
-    console.log(titre);
+    // console.log(titre);
 
     if (titre.length > 0 && titre.length < 3) {
       errorDisplaySpan(
@@ -213,7 +216,7 @@ const titleChecker = (value) => {
     } else {
       errorDisplaySpan("title", "", true);
       title = titre;
-      console.log("title");
+      // console.log("title");
     }
   });
 };
@@ -262,39 +265,40 @@ function updateValue(e) {
   }
 }
 
+const postNewPhoto = async (image, title, category) => {
+  const formData = new FormData();
+
+  formData.append("image", image);
+  formData.append("title", title);
+  formData.append("category", category);
+
+  await fetch("http://localhost:5678/api/works", {
+    method: "POST",
+    body: formData,
+    headers: { Authorization: `Bearer ${token}` },
+  }).then((response) => {
+    if (response.ok) {
+      console.log("projet ajouté");
+      // Puis mise à jour de la gallerie et de la page index
+      displayImgGalleryModal();
+      displayAllWorks();
+      console.log("Mise à jour des galleries");
+      previewImage.style.display = "none";
+      addImageTitle.value = "";
+      categoryChoose();
+      valid.style.background = "#B3B3B3";
+      image = null;
+      title = null;
+      category = null;
+    } else {
+      console.log("echec requete" + response.status);
+      console.log(response.body);
+    }
+  });
+};
+
 formImage.addEventListener("submit", (e) => {
   e.preventDefault();
-  if ((image && title && category) || localStorage.getItem("token")) {
-    const formData = new FormData(formImage);
-    formData.append("image", image);
-    formData.append("title", title);
-    formData.append("category", category);
 
-    const newData = { image, title, category };
-    console.log(newData);
-
-    fetch(`http://localhost:5678/api/works`, {
-      method: "POST",
-      body: formData,
-      headers: { Authorization: `Bearer ${token}` },
-    }).then((response) => {
-      if (response.ok) {
-        console.log("projet ajouté");
-        // Puis mise à jour de la gallerie et de la page index
-        displayImgGalleryModal();
-        displayAllWorks();
-        console.log("Mise à jour des galleries");
-      }
-    });
-
-    previewImage.style.display = "none";
-    addImageTitle.value = "";
-    categoryChoose();
-    valid.style.background = "#B3B3B3";
-    image = null;
-    title = null;
-    category = null;
-  } else {
-    alert("Veuillez renseigner tous les champs du formulaire");
-  }
+  postNewPhoto(image, title, category);
 });

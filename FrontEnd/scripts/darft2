@@ -1,4 +1,0 @@
-// afficher les projets filtres
-// 1 sortir le eventlistener de la fonction displayFilteredWorksAndButton() et le mettre à la suite du eventL Tous. J'utilise l'argument worksFiltered dans la fonction d'affichage de displayAllAndFilteredWorks(worksFiltered). Le eventL de tous permet de revenir à tous les travaux.
-
-// 2 je créé une fonction clickButtonFiter pour déterminer sur quel bouton j'ai cliqué, et je mets la le bloc de code qui permet de filtrer. J'appelle la fonction dans le event L du forEach qui créé les boutons filtres avec en argument worksFiltered

@@ -1,8 +1,8 @@
 let indexPage = "http://127.0.0.1:5500/FrontEnd/index.html";
 let log = document.querySelector(".log");
 // console.log(log);
-let errorMessage = document.querySelector(".error");
-// console.log(errorMessage);
+// let errorMessage = document.querySelector(".error");
+// // console.log(errorMessage);
 let formLogin = document.getElementById("login");
 let token = "";
 
@@ -27,12 +27,13 @@ formLogin.addEventListener("submit", async (event) => {
   let result = await response.json();
   console.log(result);
   token = result.token;
-
+  let errorSpan = document.querySelector(".error");
   if (token) {
-    errorMessage.style.display = "none";
+    errorSpan.style.display = "none";
     window.localStorage.setItem("token", result.token);
     window.location.href = indexPage;
   } else {
-    errorMessage.style.display = "block";
+    errorSpan.style.display = "block";
+    errorSpan.textContent = "Erreur dans l’identifiant ou le mot de passe";
   }
 });
