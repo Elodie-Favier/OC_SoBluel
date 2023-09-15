@@ -1,14 +1,7 @@
 let indexPage = "http://127.0.0.1:5500/FrontEnd/index.html";
 let log = document.querySelector(".log");
-// console.log(log);
-// let errorMessage = document.querySelector(".error");
-// // console.log(errorMessage);
 let formLogin = document.getElementById("login");
 let token = "";
-
-// if (localStorage.getItem("token")) {
-//   log.textContent = "Logout";
-// }
 
 formLogin.addEventListener("submit", async (event) => {
   event.preventDefault();

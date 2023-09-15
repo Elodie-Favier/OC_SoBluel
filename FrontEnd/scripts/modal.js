@@ -8,10 +8,11 @@ let modal = null;
 let gallerymodal = document.querySelector(".gallerymodal");
 let deleteImage = document.querySelector(".delete-img");
 let addImg = document.getElementById("addPhoto");
+
 const imageBox = document.querySelector(".image-box");
+const imagePreview = document.querySelector(".image-preview");
 const img = document.createElement("img");
-imageBox.appendChild(img);
-img.classList.add("preview-img");
+imagePreview.appendChild(img);
 let addImage = document.querySelector(".add-img");
 let arrowLeft = document.querySelector(".btn-goback");
 let formImage = document.getElementById("formNewImage");
@@ -25,7 +26,7 @@ let imgData = [];
 let imgId;
 let garbage = document.querySelector(".icon-trash i");
 let token = localStorage.getItem("token");
-
+let image, title, category;
 // fonctionnement basique de la modal
 
 const openModal = function (e) {
@@ -83,10 +84,14 @@ addImg.addEventListener("click", (e) => {
   deleteImage.style.display = "none";
 });
 arrowLeft.addEventListener("click", (e) => {
-  console.log("clic sur fleche go back");
   deleteImage.style.display = "block";
   addImage.style.display = "none";
-  previewImage.style.display = "none";
+  img.style.display = "none";
+  addImageTitle.value = "";
+  categoryChoose();
+  errorDisplaySpan("image", "", true);
+  errorDisplaySpan("title", "", true);
+  errorDisplaySpan("categorie", "", true);
   arrowLeft.style.display = "none";
 });
 
@@ -151,8 +156,6 @@ selectGarbageOnClick();
 
 //  affichage des messages d'erreur
 
-let image, title, category;
-
 // fonction d'affichage des messages d'erreur
 
 const errorDisplaySpan = (tag, message, valid) => {
@@ -178,10 +181,13 @@ let previewPicture = function (e) {
         file.size <= 4194304 &&
         (file.type === "image/jpeg" || file.type === "image/png")
       ) {
+        img.classList.add("preview-img");
         img.style.display = "block";
+
         const btnHtmlElementAjouterPhoto =
           document.querySelector(".btn-downloadPhoto");
         btnHtmlElementAjouterPhoto.style.display = "none";
+        errorDisplaySpan("image", "", true);
         let reader = new FileReader();
         reader.onload = function (e) {
           img.src = e.target.result;

@@ -105,7 +105,6 @@ if (localStorage.getItem("token")) {
   log.textContent = "Logout";
   filters.style.display = "none";
   admin.style.display = "block";
-
   editProjets.style.display = "block";
 }
 
@@ -116,6 +115,6 @@ log.addEventListener("click", () => {
   log.textContent = "Login";
   filters.style.display = "block";
   admin.style.display = "none";
-
+  location.reload();
   editProjets.style.display = "none";
 });
