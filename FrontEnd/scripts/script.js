@@ -1,3 +1,4 @@
+// Mes variables
 let log = document.querySelector(".log");
 let admin = document.querySelector(".admin");
 let editProjets = document.querySelector(".editProjets");
@@ -5,32 +6,30 @@ const myGallery = document.querySelector(".gallery");
 let filters = document.querySelector(".filters");
 let buttons = [];
 let clickOnFilter;
-
-// "http://localhost:5678/api/works"
-
 let worksData = [];
 let categories = [];
 let worksFiltered = [];
-let indexButtons = 0;
 
+// récupération des travaux via l'API
 const getWorks = async () => {
   const res = await fetch("http://localhost:5678/api/works");
   worksData = await res.json();
-  // console.log(worksData);
 };
 
+// récupération des categories via l'API
 const getCategory = async () => {
   const resp = await fetch("http://localhost:5678/api/categories");
   categories = await resp.json();
-  // console.log(categories);
 };
 
+// affichage des bouttons
 const displayButtons = async () => {
   await getWorks();
   await getCategory();
 };
 displayButtons();
 
+// affichage de tous les travaux dans la galerie
 const displayAllWorks = async () => {
   await getWorks();
   await getCategory();
@@ -44,6 +43,7 @@ const displayAllWorks = async () => {
 };
 displayAllWorks();
 
+// deselection des boutons
 function unselectedButton() {
   buttons.forEach((button) => {
     button.classList.remove("filterSelected");
@@ -51,6 +51,7 @@ function unselectedButton() {
 }
 unselectedButton();
 
+// affichage des travaux filtres
 const displayWorksWithButtons = async () => {
   await getWorks();
   await getCategory();

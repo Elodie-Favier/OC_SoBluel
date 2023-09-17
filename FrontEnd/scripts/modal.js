@@ -1,14 +1,9 @@
-// mes variables fonctionnement modale
-
-// mes variables delete work
-
-// mes variables add work
+// mes variables
 
 let modal = null;
 let gallerymodal = document.querySelector(".gallerymodal");
 let deleteImage = document.querySelector(".delete-img");
 let addImg = document.getElementById("addPhoto");
-
 const imageBox = document.querySelector(".image-box");
 const imagePreview = document.querySelector(".image-preview");
 const img = document.createElement("img");
@@ -22,12 +17,12 @@ let titre;
 let indexCategorie;
 const valid = document.getElementById("btn-valid");
 
-let imgData = [];
-let imgId;
 let garbage = document.querySelector(".icon-trash i");
 let token = localStorage.getItem("token");
 let image, title, category;
-// fonctionnement basique de la modal
+let selectCategory = document.getElementById("selectCat");
+
+// fonctionnement de la modale
 
 const openModal = function (e) {
   e.preventDefault();
@@ -100,7 +95,6 @@ arrowLeft.addEventListener("click", (e) => {
 const getImgGalleryModal = async () => {
   const res = await fetch("http://localhost:5678/api/works");
   imgData = await res.json();
-  // console.log(imgData);
 };
 getImgGalleryModal();
 
@@ -124,7 +118,6 @@ const selectGarbageOnClick = async () => {
   await displayImgGalleryModal();
 
   let galleryCards = document.querySelectorAll(".gallerymodal-card");
-  // console.log(galleryCards);
 
   galleryCards.forEach((card) => {
     let cardId = card.id;
@@ -139,7 +132,6 @@ const selectGarbageOnClick = async () => {
           headers: { Authorization: `Bearer ${token}` },
         }).then((response) => {
           if (response.ok) {
-            console.log("projet supprimé");
             // Puis mise à jour de la gallerie et de la page index
             displayImgGalleryModal();
             displayAllWorks();
@@ -151,13 +143,10 @@ const selectGarbageOnClick = async () => {
 };
 selectGarbageOnClick();
 
+// ----------------------------
 // Ajouter une photo
-// affichage des images dans la fenêtre de prévisualisation
-
-//  affichage des messages d'erreur
 
 // fonction d'affichage des messages d'erreur
-
 const errorDisplaySpan = (tag, message, valid) => {
   const box = document.querySelector("." + tag + "-box");
   const span = document.querySelector("." + tag + "-box > span");
@@ -171,8 +160,7 @@ const errorDisplaySpan = (tag, message, valid) => {
   }
 };
 
-// affichage de l'image et reccupération de
-
+// affichage des images dans la fenêtre de prévisualisation
 let previewPicture = function (e) {
   const [picture] = e.files;
   if (picture) {
@@ -194,7 +182,6 @@ let previewPicture = function (e) {
         };
         reader.readAsDataURL(picture);
         image = e.files[0];
-        // console.log(image);
       } else {
         errorDisplaySpan(
           "image",
@@ -207,11 +194,9 @@ let previewPicture = function (e) {
 };
 
 // Verifier la présence du titre
-
 const titleChecker = (value) => {
   addImageTitle.addEventListener("input", (e) => {
     titre = e.target.value;
-    // console.log(titre);
 
     if (titre.length > 0 && titre.length < 3) {
       errorDisplaySpan(
@@ -222,7 +207,6 @@ const titleChecker = (value) => {
     } else {
       errorDisplaySpan("title", "", true);
       title = titre;
-      // console.log("title");
     }
   });
 };
@@ -230,9 +214,6 @@ const titleChecker = (value) => {
 titleChecker();
 
 // affichage des catégories dans le selecteur
-
-let selectCategory = document.getElementById("selectCat");
-
 const categoryChoose = async () => {
   await getCategory();
   const emptyCategory = '<option class="cat-option" value=""></option>';
@@ -260,6 +241,7 @@ const categoryChoose = async () => {
 
 categoryChoose();
 
+// if formData Ok btn valid is green and disable = "false"
 formImage.addEventListener("change", updateValue);
 function updateValue(e) {
   if (image && title && category) {
@@ -271,6 +253,7 @@ function updateValue(e) {
   }
 }
 
+// poster un nouveau travail
 const postNewPhoto = async (image, title, category) => {
   const formData = new FormData();
 
@@ -284,11 +267,10 @@ const postNewPhoto = async (image, title, category) => {
     headers: { Authorization: `Bearer ${token}` },
   }).then((response) => {
     if (response.ok) {
-      console.log("projet ajouté");
-      // Puis mise à jour de la gallerie et de la page index
+      // mise à jour de la gallerie et de la page index
       displayImgGalleryModal();
       displayAllWorks();
-      console.log("Mise à jour des galleries");
+      // formulaire vidé des anciennes données
       previewImage.style.display = "none";
       addImageTitle.value = "";
       categoryChoose();
@@ -303,8 +285,8 @@ const postNewPhoto = async (image, title, category) => {
   });
 };
 
+// if form submit post new photo
 formImage.addEventListener("submit", (e) => {
   e.preventDefault();
-
   postNewPhoto(image, title, category);
 });

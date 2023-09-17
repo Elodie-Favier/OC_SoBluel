@@ -38,9 +38,9 @@
 </header>
 <main>
 	<section id="introduction">
+		<h2 id="ghost">ghost</h2>
 		<figure>
-			<img src="./assets/images/sophie-bluel.png" alt="">
-			<div class="editImgSoB"><i class="fa-regular fa-pen-to-square pen"></i>modifier</div>
+			<img src="./assets/images/sophie-bluel.png" alt="photo de sophie bluel">
 		</figure>
 		
 		<article>
@@ -52,62 +52,61 @@
 	</section>
 	<section id="portfolio">
 		<div class="projetsEtEditProjets">
-		<h2>Mes Projets</h2>
-		<div class="editProjets"><i class="fa-regular fa-pen-to-square pen"></i><a href="#modal1" class="js-modal">modifier</a></div>
+			<h2>Mes Projets</h2>
+			<div class="editProjets"><i class="fa-regular fa-pen-to-square pen"></i><a href="#modal1" class="js-modal">modifier</a></div>
 
-		<aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="titleModal">
+			<section id="modal1" class="modal" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="titleModal1 titleModal2">
 			<div class="modal-wrapper js-modal-stop ">
 				<button class="js-modal-goback btn-goback"><img src="assets/icons/vector-arrowleft.png" class="arrow-left" alt="icone de la flèche pour revenir en arrière"><span class="close-modal-text">Retour en arrière</span></button>
-				<button class="js-modal-close btn-closeModal"><img src="assets/icons/vector-cross.png" class=".btn-closeModal"><span class="close-modal-text">Fermer la boîte</span></button>
-			<div class="delete-img">
-				
-				<h1 id="titleModal">Galerie photo</h1>
+				<button class="js-modal-close btn-closeModal"><img src="assets/icons/vector-cross.png" alt="image de la croix" class=".btn-closeModal"><span class="close-modal-text">Fermer la boîte</span></button>
+
+				<div class="delete-img">
+				<h3 id="titleModal1">Galerie photo</h3>
 					<div class="gallerymodal">
 					</div>
 					<div class="bottom-modal">
-<div class="greyLine"></div>
-<button type="button" id="addPhoto">Ajouter une photo</button>
-
+						<div class="greyLine"></div>
+						<button type="button" id="addPhoto">Ajouter une photo</button>
 					</div>
-			</div>
+				</div>
 			
-			<div class="add-img">	
-			<h1 id="titleModal">Ajout photo</h1>
-				<!-- form debut -->
-			<form id="formNewImage" class="js-modal-stop" action="#" method="post">
-		
-			<div class="image-box">
-				<div class="image-preview">
-				<div class="icon-img"><img src="assets/icons/vector-icon-img.png"  alt="icone image à télécharger"></div>
-				<button class="btn-downloadPhoto" type="button" ><label class="labelfile" for="file">+ Ajouter photo</label></button>
-				<input id="file" class="visually-hidden" onchange="previewPicture(this)" type="file" name="file" accept="image/png, image/jpeg, image/jpg" required>
-				<p class="formatPhoto">jpg, png : 4mo max</p>
-			</div>
-				<span></span>
-			</div>
+				<div class="add-img">	
+				<h3 id="titleModal2">Ajout photo</h3>
+					<!-- form debut -->
+				<form id="formNewImage" class="js-modal-stop" action="#" method="post">
 			
-			<div class="title-box">
-				<label for="titre">Titre</label>
-				<input type="text" name="titre" id="titre" placeholder="ex : Villa Vieille - Villeurbanne-les-Plages">
-				<span></span>
+				<div class="image-box">
+					<div class="image-preview">
+					<div class="icon-img"><img src="assets/icons/vector-icon-img.png"  alt="icone image à télécharger"></div>
+					<label class="labelfile" for="file">+ Ajouter photo</label>
+					<button class="btn-downloadPhoto" type="button" ></button>
+					<input id="file" class="visually-hidden" onchange="previewPicture(this)" type="file" name="file" accept="image/png, image/jpeg, image/jpg" required>
+					<p class="formatPhoto">jpg, png : 4mo max</p>
+				</div>
+					<span></span>
+				</div>
+				
+				<div class="title-box">
+					<label for="titre">Titre</label>
+					<input type="text" name="titre" id="titre" placeholder="ex : Villa Vieille - Villeurbanne-les-Plages">
+					<span></span>
+				</div>
+				<div class="categorie-box">
+					<label for="selectCat">Catégorie</label>
+					<select name="selectCat" id="selectCat">
+					</select>
+					<span></span>
+				</div>
+				
+				<div class="bottom-modal2">
+					<div class="greyLine"></div>
+					<button type="submit" id="btn-valid">Valider</button>
+				</div>
+			</form>
+				<!-- form fin -->
+				</div>
 			</div>
-			<div class="categorie-box">
-				<label for="selectCat">Catégorie</label>
-				<select type="text" name="selectCat" id="selectCat">
-					<option value=""></option>
-				</select>
-				<span></span>
-			</div>
-			
-			<div class="bottom-modal2">
-				<div class="greyLine"></div>
-				<button type="submit" id="btn-valid">Valider</button>
-			</div>
-		</form>
-			<!-- form fin -->
-		</div>
-			
-		</aside>
+			</section>
 		</div>
 		<div class="filters">	
 		</div>
