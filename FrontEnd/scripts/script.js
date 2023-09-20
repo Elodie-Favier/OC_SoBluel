@@ -22,13 +22,6 @@ const getCategory = async () => {
   categories = await resp.json();
 };
 
-// affichage des bouttons
-const displayButtons = async () => {
-  await getWorks();
-  await getCategory();
-};
-displayButtons();
-
 // affichage de tous les travaux dans la galerie
 const displayAllWorks = async () => {
   await getWorks();

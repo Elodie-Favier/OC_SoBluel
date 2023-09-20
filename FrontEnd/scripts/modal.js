@@ -247,7 +247,14 @@ function updateValue(e) {
   if (image && title && category) {
     valid.style.background = "#1D6154";
     valid.disabled = false;
+    errorDisplaySpan("btnSubmit", "", true);
   } else {
+    errorDisplaySpan(
+      "btnSubmit",
+      "Tous les champs doivent être renseignés",
+      false
+    );
+
     valid.style.background = "#B3B3B3";
     valid.disabled = true;
   }
@@ -279,6 +286,10 @@ const postNewPhoto = async (image, title, category) => {
       title = null;
       category = null;
     } else {
+      errorDisplaySpan(
+        "btnSubmit",
+        "Il manque une information dans le formulaire"
+      );
       console.log("echec requete" + response.status);
       console.log(response.body);
     }
